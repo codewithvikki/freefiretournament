@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SKILL CLASH — Features | Free Fire Tournaments</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:radial-gradient(circle at top,#0d1b3d,#020617);
+      color:#f0f6ff;
+      line-height:1.6;
+    }
+    .container{max-width:1200px;margin:auto;padding:20px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#ff7a18,#af1cff);display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,122,24,.6)}70%{box-shadow:0 0 0 15px rgba(255,122,24,0)}100%{box-shadow:0 0 0 0 rgba(255,122,24,0)}}
+    .site-title{font-size:22px;font-weight:700}
+    .tagline{font-size:12px;opacity:.8}
+
+    nav{position:relative}
+    nav ul{list-style:none;display:flex;gap:15px}
+    nav a{color:#f0f6ff;text-decoration:none;position:relative}
+    nav a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:#ff7a18;transition:.3s}
+    nav a:hover::after{width:100%}
+    .cta{background:linear-gradient(90deg,#ff8a00,#ff39a6);padding:10px 20px;border-radius:30px;color:#fff;font-weight:700;border:none;cursor:pointer;box-shadow:0 0 15px rgba(255,57,166,.6);transition:transform .2s;text-decoration:none;display:inline-block}
+    .cta:hover{transform:scale(1.05)}
+
+    /* Hamburger */
+    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px}
+    .hamburger span{width:25px;height:3px;background:#fff;border-radius:5px;transition:.3s}
+    .mobile-menu{display:none;flex-direction:column;position:absolute;right:0;top:40px;background:rgba(0,0,0,.9);padding:15px;border-radius:10px;z-index:99}
+    .mobile-menu a{margin:8px 0;color:#fff;text-decoration:none}
+    .mobile-menu.show{display:flex}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;margin-top:30px}
+    .hero-left .eyebrow{background:rgba(255,255,255,.1);padding:6px 14px;border-radius:999px;font-size:12px;letter-spacing:1px;text-transform:uppercase;animation:fadeInDown 1s}
+    .hero-title{font-size:36px;margin:16px 0;font-weight:800;animation:fadeInLeft 1.2s}
+    .hero-lead{font-size:16px;opacity:.9;animation:fadeInLeft 1.5s}
+    @keyframes fadeInLeft{0%{opacity:0;transform:translateX(-30px)}100%{opacity:1;transform:translateX(0)}}
+    @keyframes fadeInDown{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}
+
+    .btn-row{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);padding:10px 16px;border-radius:30px;font-weight:600;cursor:pointer;transition:.3s;text-decoration:none;color:#fff;display:inline-block}
+    .btn:hover{background:rgba(255,255,255,.15)}
+
+    .hero-right{border-radius:16px;height:350px;overflow:hidden;position:relative;animation:fadeInRight 1.5s}
+    .hero-right img{width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform 5s ease-in-out}
+    .hero-right:hover img{transform:scale(1.1)}
+    @keyframes fadeInRight{0%{opacity:0;transform:translateX(30px)}100%{opacity:1;transform:translateX(0)}}
+
+    /* Features */
+    .features{margin-top:50px}
+    .features h2{text-align:center;font-size:26px;margin-bottom:20px;color:#ffda6b}
+    .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));padding:20px;border-radius:16px;position:relative;overflow:hidden;transition:transform .3s, box-shadow .3s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.5)}
+    .card h3{font-size:18px;margin-bottom:10px;color:#ffda6b}
+    .card p{font-size:14px;opacity:.9}
+    .icon-wrap{width:54px;height:54px;border-radius:12px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+
+    /* Rules */
+    .rules{margin-top:40px;padding:20px;border-radius:16px;background:rgba(255,255,255,.05)}
+    .rules h3{margin-bottom:14px;color:#ffda6b}
+    .rules ul{list-style:none;display:grid;gap:12px}
+    .rules li{background:rgba(0,0,0,.3);padding:12px;border-radius:10px;font-size:14px}
+
+    /* Footer CTA */
+    .final-cta{margin-top:40px;text-align:center;padding:20px;background:linear-gradient(90deg,#ff8a00,#ff39a6);border-radius:20px;color:#fff;animation:fadeInUp 1s}
+    .final-cta strong{font-size:20px}
+    @keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:768px){
+      nav ul{display:none}
+      .hamburger{display:flex}
+      .hero{grid-template-columns:1fr}
+      .hero-right{height:220px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">🎮</div>
+        <div>
+          <h1 class="site-title">SKILL CLASH</h1>
+          <p class="tagline">Epic BGMI & Free Fire Tournaments</p>
+        </div>
+      </div>
+
+      <!-- Desktop Nav -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="rules.html">Rules</a></li>
+        </ul>
+
+        <!-- Hamburger -->
+        <div class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('show')">
+          <span></span><span></span><span></span>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+          <a href="index.html">Home</a>
+          <a href="details.html">Details</a>
+          <a href="features.html">Features</a>
+          <a href="rules.html">Rules</a>
+          <a href="register.html">Register</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-left">
+        <span class="eyebrow">Join · Compete · Conquer</span>
+        <h2 class="hero-title">Battlemania gives you the stage to play eSports on your favorite mobile games.</h2>
+        <p class="hero-lead">Track your stats, rise on leaderboards, win cash prizes & compete fairly with gamers across India.</p>
+        <div class="btn-row">
+          <a href="index.html#register" class="cta">Join Free Contest</a>
+          <a href="#features" class="btn">Explore Features</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="features2.jpg" alt="Tournament" />
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="card"><div class="icon-wrap">🔥</div><h3>Free Contests</h3><p>Play contests for free as a launch offer and start competing risk-free.</p></div>
+        <div class="card"><div class="icon-wrap">💰</div><h3>Cash Prizes</h3><p>Compete with India's best and win exciting rewards for your skills.</p></div>
+        <div class="card"><div class="icon-wrap">🎯</div><h3>Gamer Profile</h3><p>Showcase your stats and achievements, build your reputation & fanbase.</p></div>
+        <div class="card"><div class="icon-wrap">🏆</div><h3>Leader Boards</h3><p>Climb daily, weekly and seasonal ranks to prove your dominance.</p></div>
+        <div class="card"><div class="icon-wrap">⚖️</div><h3>Fair Play</h3><p>No emulators, no hackers — only fair competition.</p></div>
+        <div class="card"><div class="icon-wrap">🤝</div><h3>Share & Earn</h3><p>Refer gamers & earn bonuses while growing the community.</p></div>
+      </div>
+    </section>
+
+    <!-- Rules -->
+    <section id="rules" class="rules">
+      <h3>Rules & Fair Play</h3>
+      <ul>
+        <li>No emulators — only mobile players allowed.</li>
+        <li>No hacking or exploiting — strict ban policy.</li>
+        <li>Respect other players & organizers.</li>
+        <li>Follow match schedule — no-shows may be removed.</li>
+      </ul>
+    </section>
+
+    <!-- CTA -->
+    <section id="join" class="final-cta">
+      <strong>Ready to Play?</strong>
+      <p>Join a free contest today and test your skills against India's best players.</p>
+      <a href="index.html#register" class="cta">Register Now</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Free Fire Cup</p>
+  </footer>
+</body>
+</html>
